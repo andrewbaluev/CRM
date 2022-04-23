@@ -150,88 +150,9 @@
             </div>
           </div>
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>ИФО</th>
-                  <th>Заказ</th>
-                  <th>Сумма</th>
-                  <th>Статус</th>
-                  <th>Действия</th>
-                  <th>Дата / Время</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Максим Анатольевич</td>
-                  <td>Фотоальбом</td>
-                  <td>1400,00</td>
-                  <td><div class="badge badge-primary">new</div></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm">
-                      Редактировать
-                    </button>
-                  </td>
-                  <td>12.02.2019 14:30</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Серьгей Дмитриевич</td>
-                  <td>Бумага для принтера</td>
-                  <td>510,00</td>
-                  <td><div class="badge badge-warning">process</div></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm">
-                      Редактировать
-                    </button>
-                  </td>
-                  <td>11.02.2019 11:30</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Ольга Арбузова</td>
-                  <td>Краски для принетра</td>
-                  <td>2100,00</td>
-                  <td><div class="badge badge-warning">process</div></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm">
-                      Редактировать
-                    </button>
-                  </td>
-                  <td>05.03.2019 04:12</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Максимус Валькиш</td>
-                  <td>Полимерная ванна</td>
-                  <td>785,00</td>
-                  <td><div class="badge badge-danger">back</div></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm">
-                      Редактировать
-                    </button>
-                  </td>
-                  <td>07.03.2019 17:15</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ольга Арбузова</td>
-                  <td>Фотоальбом</td>
-                  <td>1400,00</td>
-                  <td><div class="badge badge-dark">archived</div></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm">
-                      Редактировать
-                    </button>
-                  </td>
-                  <td>01.03.2019 13:22</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <!-- точка монтирования таблицы на странице -->
+          <div data-mount="ordersTable"></div>
+
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item disabled">
@@ -252,6 +173,51 @@
         </main>
       </div>
     </div>
+
+    <!-- шаблон таблицы -->
+    <template data-template="ordersTable">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>ИФО</th>
+              <th>Заказ</th>
+              <th>Сумма</th>
+              <th>Статус</th>
+              <th>Действия</th>
+              <th>Дата / Время</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </template>
+
+    <!--  шаблон строки -->
+    <template data-template="orderRow">
+      <tr>
+        <td data-field="id"></td>
+        <td data-field="name"></td>
+        <td data-field="orderType"></td>
+        <td data-field="price"></td>
+        <td data-field="badge">
+          <div class="badge badge-primary hidden" data-badge="new">new</div>
+          <div class="badge badge-warning hidden" data-badge="process">
+            process
+          </div>
+          <div class="badge badge-danger hidden" data-badge="back">back</div>
+          <div class="badge badge-dark hidden" data-badge="archived">
+            archived
+          </div>
+        </td>
+        <td data-field="action">
+          <button class="btn btn-outline-primary btn-sm">Редактировать</button>
+        </td>
+        <td data-field="createdAt"></td>
+      </tr>
+    </template>
+
     <script src="src/index.js" type="module"></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
