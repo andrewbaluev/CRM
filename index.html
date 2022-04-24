@@ -116,37 +116,52 @@
             <h1 class="h2">Заказы</h1>
           </div>
 
-          <div class="form-row p-2">
+          <div class="form-row p-2" data-filterbar>
             <div class="form-group col">
               <label>ФИО:</label>
-              <input class="form-control" type="text" placeholder="ФИО" />
+              <input
+                class="form-control"
+                type="text"
+                placeholder="ФИО"
+                data-field="name"
+              />
             </div>
             <div class="form-group col">
               <label>Заказ:</label>
-              <select class="form-control">
+              <select class="form-control" data-field="orderType">
                 <option selected></option>
                 <option></option>
               </select>
             </div>
             <div class="form-group col">
               <label>Статус:</label>
-              <select class="form-control">
-                <option selected>Все</option>
-                <option>Новые</option>
-                <option>На исполнение</option>
-                <option>Возврат</option>
-                <option>Заархивированные</option>
+              <select class="form-control" data-field="status">
+                <option value="" selected>Все</option>
+                <option value="new">Новые</option>
+                <option value="process">На исполнение</option>
+                <option value="back">Возврат</option>
+                <option value="archived">Заархивированные</option>
               </select>
             </div>
             <div class="form-group col">
               <label>Сумма:</label>
-              <input class="form-control" type="number" placeholder="От" />
-              <input class="form-control" type="number" placeholder="До" />
+              <input
+                class="form-control"
+                type="number"
+                placeholder="От"
+                data-field="sumMin"
+              />
+              <input
+                class="form-control"
+                type="number"
+                placeholder="До"
+                data-field="sumMax"
+              />
             </div>
             <div class="form-group col">
               <label>Дата:</label>
-              <input class="form-control" type="date" />
-              <input class="form-control" type="date" />
+              <input class="form-control" type="date" data-field="dateMin" />
+              <input class="form-control" type="date" data-field="dateMax" />
             </div>
           </div>
 
