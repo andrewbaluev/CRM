@@ -46,16 +46,16 @@ class Navigator extends Observable {
   }
 
   remove(key) {
-    if (this.$data.hasOwnProperty(key)) {
+    if (!this.$data.hasOwnProperty(key)) {
       return;
     }
 
-    delete this.$data[key]; 
+    delete this.$data[key];
 
-    this.$data = {
-      ...this.$data,
-      [key]: value,
-    };
+    // this.$data = {
+    //   ...this.$data,
+    //   [key]: value,
+    // };
 
     const params = new URLSearchParams();
 
