@@ -3,20 +3,21 @@ import OrdersTable from "./core/OrdersTable.js";
 import Paginator from "./core/Paginator.js";
 import Observable from "./core/Observable.js";
 import EventEmitter from "./core/EventEmitter.js";
+import Navigator from "./core/Navigator.js";
 
 const store = new Store();
 store.download();
 
-const ob = new Observable();
+const observable = new Observable();
 
-const ee = new EventEmitter();
+const eventEmitter = new EventEmitter();
 
-const ot = new OrdersTable(
+const ordersTable = new OrdersTable(
   document.querySelector('[data-mount="ordersTable"]'),
   store.orders.slice(0, 5)
 );
 
-ot.on("edit", (orderId) => console.log({ orderId }));
+ordersTable.on("edit", (orderId) => console.log({ orderId }));
 
 const paginator = new Paginator(
   document.querySelector('[data-mount="pagination"]'),
@@ -25,6 +26,14 @@ const paginator = new Paginator(
 );
 
 paginator.on("move", (nextPage) => {
-  paginator.page = nextPage;
-  ot.orders = store.orders.slice((nextPage - 1) * 5, nextPage * 5);
+  // paginator.page = nextPage;
+  // ordersTable.orders = store.orders.slice((nextPage - 1) * 5, nextPage * 5);
+  navigator.set("page", nextPage);
+});
+
+const navigator = new Navigator((navigator) => {
+  console.log(navigator);
+  const page = parseInt(navigator.get("page", 1), 10);
+  paginator.page = page;
+  ordersTable.orders = store.orders.slice((page - 1) * 5, page * 5);
 });
